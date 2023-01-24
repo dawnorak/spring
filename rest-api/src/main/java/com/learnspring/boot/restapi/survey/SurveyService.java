@@ -1,5 +1,7 @@
 package com.learnspring.boot.restapi.survey;
 
+import java.math.BigInteger;
+import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -47,6 +49,23 @@ public class SurveyService {
 			return null;
 		}
 		return optionalSurvey.get();
+	}
+	
+	public List<Question> retrieveAllSurveyQuestions(String surveyId) {
+		Survey survey = retrieveSurveyById(surveyId);
+
+		if (survey == null)
+			return null;
+
+		return survey.getQuestions();
+	}
+
+	public void addNewSurveyQuestion(String surveyId, Question question) {
+		List<Question> questions = retrieveAllSurveyQuestions(surveyId);
+		SecureRandom secureRandom = new SecureRandom();
+		String randomId = new BigInteger(32, secureRandom).toString();
+		question.setId(randomId);
+		questions.add(question);
 	}
 
 }
