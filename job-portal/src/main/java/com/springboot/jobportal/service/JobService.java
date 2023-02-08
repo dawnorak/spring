@@ -12,7 +12,10 @@ public class JobService {
     private JobRepository jobRepository;
 
     public Job saveJob(Job job) {
-
         return jobRepository.save(job);
+    }
+
+    public void deleteJob(Long jobId){
+        jobRepository.deleteById(jobId);
     }
 }

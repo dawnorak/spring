@@ -6,6 +6,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
@@ -27,4 +29,7 @@ public class Job {
     private String title;
     private String company;
     private Long salary;
+
+//    @OneToMany(mappedBy = "job")
+//    private List<Applicant> applicants;
 }

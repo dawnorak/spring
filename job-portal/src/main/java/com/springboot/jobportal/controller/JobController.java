@@ -28,4 +28,8 @@ public class JobController {
         return jobRepository.findAll();
     }
 
+    @DeleteMapping("/deleteJob/{jobId}")
+    public void deleteJob(@PathVariable("jobId") Long jobId) {
+        jobService.deleteJob(jobId);
+    }
 }
