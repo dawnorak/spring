@@ -6,6 +6,9 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
@@ -26,4 +29,27 @@ public class Notification {
             referencedColumnName = "jobId"
     )
     private Job job;
+
+    @ManyToMany(
+            cascade = CascadeType.ALL
+    )
+    @JoinTable(
+            name = "applicant_notification_map",
+            joinColumns = @JoinColumn(
+                    name = "notification_id",
+                    referencedColumnName = "notificationId"
+            ),
+            inverseJoinColumns = @JoinColumn(
+                    name = "applicant_id",
+                    referencedColumnName = "applicantId"
+            )
+    )
+    private List<Applicant> applicant;
+
+    public void addApplicant(Applicant applicants){
+        if (applicant == null){
+            applicant = new ArrayList<>();
+        }
+        applicant.add(applicants);
+    }
 }

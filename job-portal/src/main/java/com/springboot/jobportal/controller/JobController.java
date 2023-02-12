@@ -5,6 +5,7 @@ import com.springboot.jobportal.entity.Job;
 import com.springboot.jobportal.repository.JobRepository;
 import com.springboot.jobportal.service.JobService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -19,6 +20,7 @@ public class JobController {
     private JobRepository jobRepository;
 
     @PostMapping("/addJob")
+    @ResponseStatus(HttpStatus.CREATED)
     public Job postJob(@RequestBody Job job){
         return jobService.saveJob(job);
     }

@@ -1,5 +1,6 @@
 package com.springboot.jobportal.controller;
 
+import com.springboot.jobportal.dto.NotificationJobDto;
 import com.springboot.jobportal.entity.Notification;
 import com.springboot.jobportal.service.NotificationService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,12 +17,13 @@ public class NotificationController {
     private NotificationService notificationService;
 
     @GetMapping("allNotifications")
-    public List<Notification> getNotification(){
+    public List<NotificationJobDto> getNotification(){
         return notificationService.allNotification();
     }
 
     @PostMapping("/addNotification")
-    public Notification postNotification(Notification notification){
-        return notificationService.addNotification(notification);
+    public Notification postNotification(NotificationJobDto notificationJobDto){
+        return notificationService.addNotification(notificationJobDto);
     }
+
 }

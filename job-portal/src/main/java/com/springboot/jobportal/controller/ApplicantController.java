@@ -16,12 +16,12 @@ public class ApplicantController {
     private ApplicantService applicantService;
 
     @PostMapping("/addApplicant")
-    public Applicant postDetails(@RequestBody ApplicantJobDto applicantJobDto) {
+    public Applicant postApplicant(@RequestBody ApplicantJobDto applicantJobDto) {
         return applicantService.saveApplicant(applicantJobDto);
     }
 
     @GetMapping("/allApplicants")
-    public List<ApplicantJobDto> allJobs(){
+    public List<ApplicantJobDto> getApplicant(){
         return applicantService.getApplicant();
     }
 

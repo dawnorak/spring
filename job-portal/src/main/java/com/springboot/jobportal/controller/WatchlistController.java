@@ -1,5 +1,6 @@
 package com.springboot.jobportal.controller;
 
+import com.springboot.jobportal.dto.WatchlistApplicantDto;
 import com.springboot.jobportal.entity.Watchlist;
 import com.springboot.jobportal.service.WatchlistService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,17 +15,22 @@ public class WatchlistController {
     private WatchlistService watchlistService;
 
     @PostMapping("/addWatchlist")
-    public Watchlist addWatchlist(@RequestBody Watchlist watchlist){
-        return watchlistService.saveWatchlist(watchlist);
+    public Watchlist addWatch(@RequestBody WatchlistApplicantDto watchlistApplicantDto){
+        return watchlistService.saveWatchlist(watchlistApplicantDto);
     }
 
     @GetMapping("/allWatchlist")
-    public List<Watchlist> allWatchlist(){
-        return watchlistService.getAllWatchlist();
+    public List<WatchlistApplicantDto> allWatchlist(){
+        return watchlistService.getWatchlist();
     }
 
     @DeleteMapping("/deleteWatchlist/{watchlistId}")
     public void deleteWatchlist(@PathVariable("watchlistId") Long watchlistId){
         watchlistService.deleteWatchlistById(watchlistId);
+    }
+
+    @GetMapping("/allWatchlist/{applicantId}")
+    public List<Watchlist> allWatchlistById(@PathVariable("applicantId") Long applicantId){
+        return watchlistService.getWatchlistById(applicantId);
     }
 }
